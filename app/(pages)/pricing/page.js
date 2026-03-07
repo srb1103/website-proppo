@@ -1,11 +1,14 @@
 'use client'
 import { NavBar1 } from "@/components/NavBar"
 import Footer from "@/components/Footer"
+import { useSignUpForm } from "@/hooks/useForm"
+import Button from "@/components/Button"
 export default function Pricing() {
+    const {renderSUForm,formComponent} = useSignUpForm()
     const pricing_data = [
-        {name:'Yearly',cost:45,off:10},
-        {name:'Half Yearly/Quaterly',cost:48,off:5},
-        {name:'Monthly',cost:50,off:0},
+        // {name:'Yearly',cost:45,off:10},
+        // {name:'Half Yearly/Quaterly',cost:48,off:5},
+        // {name:'Monthly',cost:50,off:0},
     ]
     const features = [
         '📋 Unlimited Property Listings',
@@ -19,13 +22,22 @@ export default function Pricing() {
   return (
     <>
       <NavBar1/>
+      {formComponent}
       <div className="w-[95%] md:w-[80%] mx-auto py-20 md:pt-40">
         <h1 className="font-bold text-2xl md:text-4xl lg:text-5xl text-center">
             <span className="bl_un">Transparent</span> Pricing
         </h1>
-        <p className="w-fit mx-auto mt-4 max-w-[90vw] text-xs md:text-sm opacity-70 italic bg-blue-800/5 p-1 px-2 border-r-[#6840ff] border-r-2 dark:bg-white/5 dark:border-r-white dark:text-white text-center">
+        <p className="w-fit mx-auto my-4 max-w-[90vw] text-xs md:text-sm opacity-70 italic bg-blue-800/5 p-1 px-2 border-r-[#6840ff] border-r-2 dark:bg-white/5 dark:border-r-white dark:text-white text-center">
         Choose the plan that fits your needs. No hidden fees. Just Powerful Features. 🙌
         </p>
+        <div className="flex items-center justify-center">
+            <Button
+              styles="btn_pri text-sm md:text-lg px-5"
+              onClick={renderSUForm}
+            >
+              Contact Us for Custom Plans
+            </Button>
+          </div>
 
         <div className="relative w-[90%] md:w-[80%] mx-auto mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-4">
         {pricing_data.map((item, index) => {

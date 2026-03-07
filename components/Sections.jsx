@@ -352,9 +352,11 @@ export function WhoGetsWhat() {
 
 export function PricingSection() {
   const router = useRouter()
+  const {renderSUForm,formComponent} = useSignUpForm()
 
   return (
-    <section className="min-h-screen py-16 flex justify-center pricing" id="pricing">
+    <section className="py-16 flex justify-center pricing" id="pricing">
+    {formComponent}
       <motion.div
         className="relative w-[90%] md:w-[80%] mx-auto "
         initial="hidden"
@@ -363,19 +365,27 @@ export function PricingSection() {
         variants={fadeInUp}
       >
         <motion.div
-          className="flex items-center flex-col text-center gap-2 mb-8 md:mb-12"
+          className="flex items-center flex-col text-center gap-2"
           variants={fadeInUp}
         >
           <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl">
             💰 <span className="bl_un">Pricing</span>
           </h1>
-          <p className="text-xs md:text-xl text-gray-800/80 italic mt-2 bg-blue-800/5 p-1 px-2 border-r-[#6840ff] border-r-2 max-w-[90vw] dark:bg-white/5 dark:border-r-white dark:text-white">
+          <p className="text-xs md:text-xl text-gray-800/80 italic my-2 bg-blue-800/5 p-1 px-2 border-r-[#6840ff] border-r-2 max-w-[90vw] dark:bg-white/5 dark:border-r-white dark:text-white">
             We almost charged more… but we like you too much. 😜
           </p>
+          <motion.div variants={bounceIn}>
+            <Button
+              styles="btn_pri text-sm md:text-lg px-5"
+              onClick={renderSUForm}
+            >
+              Contact Us for Custom Plans
+            </Button>
+          </motion.div>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-center"
+        {/* <motion.div
+          className="grid grid-cols-1 gap-4 md:gap-8 items-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -404,7 +414,7 @@ export function PricingSection() {
               Nope, no sneaky charges or surprise invoices. Just straightforward pricing for your peace of mind. 🙌
             </p>
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </section>
   )

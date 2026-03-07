@@ -83,9 +83,9 @@ export default function Hero() {
                   <motion.div variants={bounceIn}>
                     <Button styles="btn_pri md:text-lg px-5" onClick={renderSUForm}>Sign Up Now</Button>
                   </motion.div>
-                  <motion.div variants={bounceIn} transition={{ delay: 0.2 }}>
+                  {/* <motion.div variants={bounceIn} transition={{ delay: 0.2 }}>
                     <Button styles="btn_sec md:text-lg px-5" onClick={() => router.push('/pricing')}>See Pricing</Button>
-                  </motion.div>
+                  </motion.div> */}
                 </motion.div>
             </motion.div>
             <motion.div
