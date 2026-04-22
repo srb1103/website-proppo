@@ -23,6 +23,9 @@ import qr_menu from '../public/icons/qr_menu.png'
 import sync from '../public/icons/sync.png'
 import virtual_inventory from '../public/icons/virtual_inventory.png'
 import web_checkin from '../public/icons/web_checkin.png'
+import kitchen_management from '../public/icons/kitchen_management.png'
+import payment_gateway from '../public/icons/payment_gateway.png'
+import { BedDouble, Truck, Bell, Shield, Building2, CheckCircle2, ChevronRight } from 'lucide-react'
 
 // images
 import wdpd from '../public/images/wdpd.png'
@@ -135,13 +138,13 @@ export function HowDoesProppoWork() {
 export function WhatDoesProppoDo() {
   const wdpd_data = [
     {
-      name: 'PMS',
-      text: "Manages bookings, billing, checkouts, and staff — all from one place.",
+      name: "PMS Dashboard",
+      text: "Live overview of bookings, revenue, occupancy, and staff — all in one place.",
       image: pms,
-      sub_text: "Focus more on guests, less on juggling tasks."
+      sub_text: "Your entire property at a glance, any time of day."
     },
     {
-      name: 'Channel Manager',
+      name: "Channel Manager",
       text: "Keeps all your OTAs synced in real-time — rates, availability, and bookings.",
       sub_text: "(No more copy-paste marathons.)",
       image: channel_manager
@@ -153,16 +156,40 @@ export function WhatDoesProppoDo() {
       sub_text: "More bookings, more control, more profits."
     },
     {
-      name: 'QR Menu',
-      text: "Guests scan, browse the menu, and order from their phone.",
+      name: 'QR Menu & Kitchen Orders',
+      text: "Guests scan and order from their phone. Orders route instantly to the kitchen with KOT printing.",
       image: qr_menu,
-      sub_text: "(No more “two chai to 204” calls at midnight.)"
+      sub_text: "(No more 'two chai to 204' calls at midnight.)"
+    },
+    {
+      name: 'Kitchen Management',
+      text: "Live order queue, KOT printing, and a dedicated kitchen dashboard for your F&B team.",
+      image: kitchen_management,
+      sub_text: "Every order tracked from tap to table."
     },
     {
       name: 'Web Check-in',
       text: "Guests check in before arrival — no front-desk waiting.",
       image: web_checkin,
       sub_text: "(Goodbye queues, hello smooth arrivals.)"
+    },
+    {
+      name: 'Housekeeping',
+      icon: BedDouble,
+      text: "Room status board, cleaning task assignments, and real-time status updates for your team.",
+      sub_text: "No more walkie-talkie chaos between floors."
+    },
+    {
+      name: 'Vendor Management',
+      icon: Truck,
+      text: "Track suppliers, log purchases by category, and keep your inventory costs in check.",
+      sub_text: "Every vendor, every bill — in one place."
+    },
+    {
+      name: 'Finance & Reports',
+      image: payment_gateway,
+      text: "Revenue reports, payment tracking, and accounting records built for ADMIN and Finance roles.",
+      sub_text: "Month-end without the migraine."
     },
     {
       name: 'Virtual Inventory',
@@ -173,7 +200,7 @@ export function WhatDoesProppoDo() {
   ]
 
   return (
-    <div className="min-h-screen py-8 md:py-16 wdpd" id="features">
+    <div className="py-8 md:py-16 wdpd" id="features">
       <motion.div
         className="flex items-center flex-col text-center gap-2 mt-8 md:mt-0"
         initial="hidden"
@@ -187,7 +214,7 @@ export function WhatDoesProppoDo() {
       </motion.div>
       <div className="relative w-[90%] md:w-[80%] mx-auto mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
         {wdpd_data.map((item, index) => {
-          const { name, text, sub_text, image } = item
+          const { name, text, sub_text, image, icon: Icon } = item
           return (
             <motion.div
               key={index}
@@ -198,7 +225,10 @@ export function WhatDoesProppoDo() {
               variants={scaleIn}
             >
               <div className="flex items-center justify-between bg-blue-900/5 rounded-2xl p-4 w-fit mb-4">
-                <Image src={image} alt={name} height={500} width={500} className="h-8 md:h-10 w-auto" />
+                {image
+                  ? <Image src={image} alt={name} height={500} width={500} className="h-8 md:h-10 w-auto" />
+                  : <Icon className="h-8 md:h-10 w-8 md:w-10 text-[#6840ff]" />
+                }
               </div>
               <div className="mt-2">
                 <h2 className="font-medium text-xl md:text-2xl">{name}</h2>
@@ -219,6 +249,9 @@ export function WhyChooseProppo() {
     { name: 'OTA Zen', text: "Sync your rates everywhere at once. (Namaste.)", image: sync },
     { name: 'More Bookings, Less Commission', text: "Keep your profits. (No middlemen. No drama.)", image: profits },
     { name: 'Affordable', text: "₹150/room/month.", image: affordable },
+    { name: 'Real-time Alerts', text: "Push notifications for new bookings, check-ins, kitchen orders — the moment they happen.", icon: Bell },
+    { name: 'Role-based Access', text: "10 staff roles. Everyone sees only what they need.", icon: Shield },
+    { name: 'Multi-property Ready', text: "Manage more than one property from a single account.", icon: Building2 },
   ]
 
   return (
@@ -246,11 +279,14 @@ export function WhyChooseProppo() {
           variants={slideInLeft}
         >
           {why_choose_proppo.map((item, index) => {
-            const { name, text, image } = item
+            const { name, text, image, icon: Icon } = item
             return (
               <div key={index} className="flex items-center justify-start gap-2 md:gap-4 mb-4 md:mb-8">
                 <div className="flex items-center justify-center">
-                  <Image src={image} alt={name} height={200} width={200} className="h-8 md:h-12 w-auto" />
+                  {image
+                    ? <Image src={image} alt={name} height={200} width={200} className="h-8 md:h-12 w-auto" />
+                    : <Icon className="h-8 md:h-12 w-8 md:w-12 text-[#6840ff]" />
+                  }
                 </div>
                 <div className="p-2">
                   <p className="text-lg md:text-2xl font-medium">{name}</p>
@@ -279,29 +315,29 @@ export function WhoGetsWhat() {
     {
       name: 'Hotels',
       features: [
-        '🛏️ Room management made easy',
-        '👥 Staff coordination simplified',
-        '📈 Smarter revenue tracking',
-        '😌 Take a well-earned day off'
+        '🛏️ Housekeeping board & room status',
+        '👥 Front desk, reception & finance roles',
+        '📈 Revenue reports & payment tracking',
+        '🔔 Instant alerts for bookings & check-ins'
       ],
       image: hotel_owners
     },
     {
       name: 'Homestays',
       features: [
-        '📲 More direct bookings',
-        '📅 Effortless calendar sync',
-        '📞 Less WhatsApp juggling',
-        '🙌 Easy check-ins & check-outs'
+        '📲 Direct booking engine, zero commission',
+        '📱 Web check-in before arrival',
+        '📅 OTA calendar sync in real-time',
+        '📦 Manage it all from the mobile app'
       ],
       image: homestay
     },
     {
       name: 'Resorts',
       features: [
-        '🗂️ PMS, all-in-one dashboard',
-        '🍽️ Handle food & room orders',
-        '🎯 Manage activities & add-ons',
+        '🍽️ Full F&B: QR menu, KOT & kitchen dashboard',
+        '🏨 Multi-department roles for every team',
+        '🛒 Vendor & inventory management',
         '⚙️ One platform, total control'
       ],
       image: vacation_rentals
@@ -446,11 +482,27 @@ export function FinalCTASection() {
             🚀 Ready to <span className="bl_un">Simplify?</span>
           </h1>
           <p className="text-sm md:text-xl text-gray-800/80 max-w-[80%] mx-auto mt-2 dark:text-white">
-            “Your guests are ready. Your rooms are ready. Your sanity? Still pending. Fix that with <span className="font-medium">Proppo</span>.”
+            "Your guests are ready. Your rooms are ready. Your sanity? Still pending. Fix that with <span className="font-medium">Proppo</span>."
           </p>
           <p className="text-xs md:text-sm opacity-70 italic bg-blue-800/5 p-1 px-2 border-r-[#6840ff] border-r-2 max-w-[90vw] dark:bg-white/5 dark:border-r-white dark:text-white">
             No hidden fees. No nonsense. 🙌
           </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6 mt-4 w-full max-w-xl mx-auto">
+            {[
+              { step: '1', label: 'Sign in with Google' },
+              { step: '2', label: 'Onboard your property' },
+              { step: '3', label: 'Go live in minutes' },
+            ].map(({ step, label }, i, arr) => (
+              <div key={step} className="flex items-center gap-2 md:gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="w-7 h-7 rounded-full bg-[#6840ff] text-white text-xs font-bold flex items-center justify-center shrink-0">{step}</span>
+                  <span className="text-sm md:text-base font-medium">{label}</span>
+                </div>
+                {i < arr.length - 1 && <ChevronRight className="w-4 h-4 opacity-30 hidden sm:block shrink-0" />}
+              </div>
+            ))}
+          </div>
         </motion.div>
 
         <motion.div
@@ -555,6 +607,150 @@ export function Testimonials() {
             </SwiperSlide>
           ))}
         </Swiper>
+      </motion.div>
+    </section>
+  )
+}
+
+export function BuiltForYourTeam() {
+  const roles = [
+    {
+      title: 'Owner / Admin',
+      color: 'bg-[#6840ff]',
+      lightColor: 'bg-[#6840ff]/10',
+      textColor: 'text-[#6840ff]',
+      emoji: '👑',
+      tagline: 'Full visibility, full control.',
+      features: [
+        'Live dashboard — revenue, occupancy, bookings',
+        'Access to every module and report',
+        'Manage staff accounts and permissions',
+        'Multi-property switching',
+      ]
+    },
+    {
+      title: 'Front Desk & Reception',
+      color: 'bg-blue-500',
+      lightColor: 'bg-blue-500/10',
+      textColor: 'text-blue-500',
+      emoji: '🛎️',
+      tagline: 'Run the floor, not spreadsheets.',
+      features: [
+        'Create, edit, and manage bookings',
+        'Guest check-in and check-out',
+        'Room assignment and availability view',
+        'Accept and record payments',
+      ]
+    },
+    {
+      title: 'Housekeeping',
+      color: 'bg-emerald-500',
+      lightColor: 'bg-emerald-500/10',
+      textColor: 'text-emerald-500',
+      emoji: '🧹',
+      tagline: 'Know every room\'s status — always.',
+      features: [
+        'Room status board (clean / dirty / in-progress)',
+        'Task assignments per staff member',
+        'Real-time status updates',
+        'No front-desk calls needed',
+      ]
+    },
+    {
+      title: 'Kitchen Staff',
+      color: 'bg-orange-500',
+      lightColor: 'bg-orange-500/10',
+      textColor: 'text-orange-500',
+      emoji: '👨‍🍳',
+      tagline: 'Orders in. Chaos out.',
+      features: [
+        'Live incoming order queue',
+        'KOT (kitchen order ticket) printing',
+        'Order status management',
+        'Dedicated kitchen-only dashboard',
+      ]
+    },
+    {
+      title: 'Finance & Accounting',
+      color: 'bg-yellow-500',
+      lightColor: 'bg-yellow-500/10',
+      textColor: 'text-yellow-500',
+      emoji: '📊',
+      tagline: 'Month-end without the migraine.',
+      features: [
+        'Revenue and payment reports',
+        'Invoice and billing records',
+        'Vendor purchase history',
+        'Read-only financial access',
+      ]
+    },
+  ]
+
+  return (
+    <section className="py-16 md:py-24 bg-[#6840ff]/5" id="roles">
+      <motion.div
+        className="w-[90%] md:w-[80%] mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+      >
+        <motion.div className="flex flex-col items-center text-center gap-3 mb-12 md:mb-16" variants={fadeInUp}>
+          <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl">
+            Built for your <span className="bl_un">whole team</span>
+          </h1>
+          <p className="text-xs md:text-xl text-gray-800/80 italic mt-1 bg-blue-800/5 p-1 px-3 border-r-[#6840ff] border-r-2 max-w-[90vw] md:max-w-[60%] dark:bg-white/5 dark:border-r-white dark:text-white">
+            Everyone gets their own view — no shared logins, no clutter, no confusion.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {roles.map((role, index) => (
+            <motion.div
+              key={index}
+              className="bg-white dark:bg-black/90 rounded-3xl p-6 md:p-8 shadow-lg shadow-[#6840ff]/5 border border-gray-200/50 dark:border-gray-800/50 flex flex-col gap-4"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={scaleIn}
+            >
+              <div className="flex items-center gap-3">
+                <span className={`text-3xl p-3 rounded-2xl ${role.lightColor}`}>{role.emoji}</span>
+                <div>
+                  <p className={`font-semibold text-base md:text-lg ${role.textColor}`}>{role.title}</p>
+                  <p className="text-xs opacity-60 italic">{role.tagline}</p>
+                </div>
+              </div>
+              <ul className="flex flex-col gap-2 mt-1">
+                {role.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm opacity-80">
+                    <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${role.textColor}`} />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+
+          <motion.div
+            className="bg-[#6840ff] rounded-3xl p-6 md:p-8 flex flex-col justify-center items-center text-center text-white gap-3 shadow-lg shadow-[#6840ff]/30"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={scaleIn}
+          >
+            <p className="text-4xl">🔐</p>
+            <p className="font-bold text-xl md:text-2xl">10 staff roles</p>
+            <p className="text-sm opacity-80">
+              Every team member gets exactly the access they need — nothing more, nothing less.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 mt-2">
+              {['Super Admin', 'Admin', 'Booking Manager', 'Front Desk', 'Reception', 'Housekeeping', 'Accounting', 'Finance', 'Service Staff', 'Kitchen Admin'].map(r => (
+                <span key={r} className="text-xs bg-white/20 px-2 py-1 rounded-full">{r}</span>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   )
