@@ -30,6 +30,8 @@ import { useRouter } from "next/navigation"
 import Button from "./Button"
 import { useBookCallForm, useSignUpForm } from "@/hooks/useForm"
 import member_image from '../public/images/member.png'
+import app_store from '../public/images/app_store.png'  
+import google_play_store from '../public/images/google_play_store.webp'  
 
 // Animation variants for reusability
 const fadeInUp = {
@@ -553,6 +555,88 @@ export function Testimonials() {
             </SwiperSlide>
           ))}
         </Swiper>
+      </motion.div>
+    </section>
+  )
+}
+
+export function DownloadAppSection() {
+  const stores = [
+    {
+      label: 'Get it on Google Play',
+      image: google_play_store,
+      href: 'https://play.google.com/store/apps/details?id=in.proppo.app',
+      alt: 'Get it on Google Play'
+    },
+    {
+      label: 'Download on the App Store',
+      image: app_store,
+      href: 'https://apps.apple.com/us/app/proppo/id6754452967',
+      alt: 'Download on the App Store'
+    }
+  ]
+
+  return (
+    <section className="py-16 md:py-24 relative overflow-hidden" id="download">
+      <div className="absolute inset-0 bg-gradient-to-br from-[#6840ff]/10 via-transparent to-[#6840ff]/5 pointer-events-none" />
+      <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[#6840ff]/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-[#6840ff]/10 blur-3xl pointer-events-none" />
+
+      <motion.div
+        className="relative w-[90%] md:w-[80%] mx-auto flex flex-col items-center text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={fadeInUp}
+      >
+        <motion.div className="flex flex-col items-center gap-3 mb-10" variants={fadeInUp}>
+          <span className="text-xs md:text-sm font-semibold uppercase tracking-widest text-[#6840ff] bg-[#6840ff]/10 px-4 py-1.5 rounded-full">
+            Now on Mobile
+          </span>
+          <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl">
+            Manage your property from{' '}
+            <span className="bl_un">anywhere</span>
+          </h1>
+          <p className="text-sm md:text-xl text-gray-800/80 italic mt-1 bg-blue-800/5 p-1 px-3 border-r-[#6840ff] border-r-2 max-w-[90vw] md:max-w-[60%] dark:bg-white/5 dark:border-r-white dark:text-white">
+            Your hotel in your pocket. Bookings, check-ins, revenue — all at your fingertips. 📱
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-2"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+        >
+          {stores.map(({ label, image, href, alt }) => (
+            <motion.a
+              key={alt}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center justify-center rounded-2xl overflow-hidden  transition-all duration-300 shadow-lg hover:shadow-xl bg-white dark:bg-black/80 p-1 hover:brightness-110"
+              variants={bounceIn}
+              // whileHover={{ scale: 1.05 }}
+              // whileTap={{ scale: 0.97 }}
+            >
+              <Image
+                src={image}
+                alt={alt}
+                height={200}
+                width={600}
+                className="h-14 md:h-16 w-auto object-contain"
+              />
+            </motion.a>
+          ))}
+        </motion.div>
+
+        <motion.p
+          className="mt-8 text-xs md:text-sm opacity-50 italic"
+          variants={fadeInUp}
+        >
+          Free to download · Available on iOS &amp; Android
+        </motion.p>
       </motion.div>
     </section>
   )
